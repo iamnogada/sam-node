@@ -1,0 +1,44 @@
+{
+  "name": "svc-framework-papi-sample",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "NODE_PATH=./app  node app/server.js",
+    "dev": "NODE_PATH=./app nodemon app/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://git-codecommit.ap-northeast-2.amazonaws.com/v1/repos/svc-framework-papi-sample"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "nodemonConfig": {
+    "ignore": [
+      ".git",
+      "node_modules/**/node_modules"
+    ],
+    "verbose": true,
+    "watch": [
+      "app/",
+      "data/",
+      "config/"
+    ]
+  },
+  "dependencies": {
+    "cookie-parser": "^1.4.5",
+    "debug": "^2.6.9",
+    "express": "^4.17.1",
+    "http-errors": "^1.7.2"
+  },
+  "devDependencies": {
+    "eslint": "^7.30.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^3.4.0",
+    "json-server": "^0.16.3",
+    "nodemon": "^2.0.9",
+    "prettier": "^2.3.2"
+  }
+}
