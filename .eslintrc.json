@@ -21,6 +21,9 @@
         "endOfLine": "auto"
       }
     ],
-    "no-var": "warn"
+    "no-var": "error",
+    // "no-unused-vars": ["error", { "args": "none" }]
+    "no-unused-vars": ["error", { "argsIgnorePattern": "^_" }]
+    // "no-console": "error"
   }
 }

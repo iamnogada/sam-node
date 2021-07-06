@@ -6,7 +6,7 @@ const cookieParser = require("cookie-parser");
 global.config = require("../config/env.json");
 
 // global middleware
-const errorHandler = require("common/middlewares/errorHandler");
+const errorHandler = require("middlewares/errorHandler");
 // import routers
 const authRouter = require("routes/auth");
 const carRouter = require("routes/car");

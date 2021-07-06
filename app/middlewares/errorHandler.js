@@ -1,7 +1,7 @@
 // error handeler
 const AppError = require("common/appError");
 
-exports.global = (error, req, res, next) => {
+exports.global = (error, _req, res, _next) => {
   error.statusCode = error.statusCode || 500;
   error.status = error.status || "unknown error";
 
