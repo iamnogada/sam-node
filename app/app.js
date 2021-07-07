@@ -7,28 +7,42 @@ global.config = require("../config/env.json");
 
 // global middleware
 const errorHandler = require("middlewares/errorHandler");
-// import routers
-const authRouter = require("routes/auth");
-const carRouter = require("routes/car");
+// import routers samples
+const authRouter = require("routers/auth");
+const carRouter = require("routers/car");
 
-// const routes = require("./routes");
-// const usersRouter = require('./routes/users');
+/* GUIDE: Import(Require) new router
+ **  const [variableRouter] = require("[path]")
+ **  locate assign router public api block or login api block
+ */
 
 const app = express();
-// eslint-disable-next-line no-undef
+
+// eslint exception rule for global variable : global.config
+/* global config */
 const port = config.application.port || 3000;
 app.set("port", port);
 
+/* <------ Start global middle ware block */
 //TODO: access and app log 처리 필요
 // app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-// app.use(express.static(path.join(__dirname, 'public')));
 
+/* End ---------------------------------> */
+
+// app.use(express.static(path.join(__dirname, 'public')));
+/* <------ Start assigning router */
+// GUIDE: add new router
 app.use("/api/car", carRouter);
 app.use("/api/auth", authRouter);
 
+/* End ---------------------------------> */
+
+/* <------ Start global handler, must be located after api router */
 app.use("*", errorHandler.notFoundErrorHandler);
 app.use(errorHandler.global);
+
+/* End ---------------------------------> */
 module.exports = app;

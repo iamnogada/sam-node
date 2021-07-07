@@ -5,8 +5,15 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "Launch Program",
-      "program": "${workspaceFolder}/app/server.js",
+      "name": "run",
+      "program": "DEBUG=prisma:* ${workspaceFolder}/app/server.js",
+      "request": "launch",
+      "skipFiles": ["<node_internals>/**"],
+      "type": "pwa-node"
+    },
+    {
+      "name": "db",
+      "program": "${workspaceFolder}/db.js",
       "request": "launch",
       "skipFiles": ["<node_internals>/**"],
       "type": "pwa-node"
