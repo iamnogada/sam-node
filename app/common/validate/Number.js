@@ -5,7 +5,7 @@ const validator = require("validator");
 
 const { AbstractValidator } = require("./validateRouter");
 
-exports.Number = (rule) => {
+module.exports = (rule) => {
   return new _Number(rule);
 };
 class _Number extends AbstractValidator {
