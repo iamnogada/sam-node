@@ -13,7 +13,14 @@
     },
     {
       "name": "db",
-      "program": "${workspaceFolder}/db.js",
+      "program": "${workspaceFolder}/test/db.js",
+      "request": "launch",
+      "skipFiles": ["<node_internals>/**"],
+      "type": "pwa-node"
+    },
+    {
+      "name": "test",
+      "program": "${workspaceFolder}/test/test.js",
       "request": "launch",
       "skipFiles": ["<node_internals>/**"],
       "type": "pwa-node"

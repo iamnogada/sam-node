@@ -33,7 +33,9 @@
     "cookie-parser": "^1.4.5",
     "debug": "^2.6.9",
     "express": "^4.17.1",
-    "http-errors": "^1.7.2"
+    "http-errors": "^1.7.2",
+    "jsonpath": "^1.1.1",
+    "validator": "^13.6.0"
   },
   "devDependencies": {
     "eslint": "^7.30.0",

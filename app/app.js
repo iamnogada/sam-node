@@ -1,3 +1,4 @@
+/* global config */
 const express = require("express");
 // const path = require('path');
 const cookieParser = require("cookie-parser");
@@ -10,6 +11,7 @@ const errorHandler = require("middlewares/errorHandler");
 // import routers samples
 const authRouter = require("routers/auth");
 const carRouter = require("routers/car");
+const employeeRouter = require("routers/employee");
 
 /* GUIDE: Import(Require) new router
  **  const [variableRouter] = require("[path]")
@@ -18,8 +20,6 @@ const carRouter = require("routers/car");
 
 const app = express();
 
-// eslint exception rule for global variable : global.config
-/* global config */
 const port = config.application.port || 3000;
 app.set("port", port);
 
@@ -29,6 +29,7 @@ app.set("port", port);
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+// app.use(errorHandler.global);
 
 /* End ---------------------------------> */
 
@@ -37,12 +38,12 @@ app.use(cookieParser());
 // GUIDE: add new router
 app.use("/api/car", carRouter);
 app.use("/api/auth", authRouter);
+app.use("/api/employee", employeeRouter);
 
 /* End ---------------------------------> */
 
 /* <------ Start global handler, must be located after api router */
 app.use("*", errorHandler.notFoundErrorHandler);
 app.use(errorHandler.global);
-
 /* End ---------------------------------> */
 module.exports = app;

@@ -1,15 +1,25 @@
 const { PrismaClient } = require("@prisma/client");
 
+const config = require("../config/env.json");
+
 const prisma = new PrismaClient({
-  datasources: {
-    employee: {
-      url: "mysql://root:passw@rd@127.0.0.1:3306/employees",
-    },
-  },
+  datasources: config.employees,
 });
+// const prisma = new PrismaClient({
+//   datasources: {
+//     employee: {
+//       url: "mysql://root:passw@rd@127.0.0.1:3306/employees",
+//     },
+//   },
+// });
 
 async function main() {
-  const employees = await prisma.employees.findFirst();
+  const employees = await prisma.employees.findUnique({
+    where: { emp_no: 10001 },
+    include: {
+      salaries: true,
+    },
+  });
   // console.log(departments);
   console.log(employees);
 }
