@@ -27,6 +27,5 @@ phases:
       - echo Deploy to K8S
       - IMAGE_NEW_TAG=$IMAGE_TAG
       - sed -i "s/#IMAGE_NEW_TAG#/$IMAGE_NEW_TAG/g" ./k8s/kustomization.yaml
-      - cat ./k8s/kustomization.yaml
       - kubectl apply -k ./k8s
       # - kustomize build ./k8s | kubectl apply -f -
