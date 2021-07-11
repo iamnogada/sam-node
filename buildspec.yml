@@ -28,4 +28,5 @@ phases:
       - echo Deploy to K8S
       - echo $(pwd)
       - ls -al
-      - kustomize build ./k8s |kubectl apply -f -
+      - $(kubectl apply -k ./k8s)
+      # - kustomize build ./k8s | kubectl apply -f -
