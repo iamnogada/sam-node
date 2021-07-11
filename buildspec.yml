@@ -28,4 +28,4 @@ phases:
       - echo Deploy to K8S
       - echo $(pwd)
       - ls -al
-      - kubectl apply -k ./k8s
+      - kubectl apply -k ./k8s/
