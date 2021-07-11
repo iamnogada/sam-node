@@ -12,17 +12,20 @@ phases:
     commands:
       - echo aws ecr login
       - $(aws ecr get-login --no-include-email --region $AWS_DEFAULT_REGION)
-      - export IMAGE_TAG=v$(date "+%Y%m%d").$CODEBUILD_BUILD_NUMBER
-  # build:
-  #   commands:
-  #     - echo docekr build
-  #     - echo $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:$IMAGE_TAG
-  #     - docker build -t $IMAGE_REPO_NAME:$IMAGE_TAG .
-  #     - docker tag $IMAGE_REPO_NAME:$IMAGE_TAG $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:$IMAGE_TAG
-  #     - echo push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:$IMAGE_TAG
-  #     - docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:$IMAGE_TAG
+      - ECR_REPO_NAME=svc/framework/sample
+      - IMAGE_TAG=v$(date "+%Y%m%d").$CODEBUILD_BUILD_NUMBER
+  build:
+    commands:
+      - echo docekr build
+      - echo $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:$IMAGE_TAG
+      - docker build -t $ECR_REPO_NAME:$IMAGE_TAG .
+      - docker tag $ECR_REPO_NAME:$IMAGE_TAG $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$ECR_REPO_NAME:$IMAGE_TAG
+      - echo push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$ECR_REPO_NAME:$IMAGE_TAG
+      - docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$ECR_REPO_NAME:$IMAGE_TAG
   post_build:
     commands:
       - echo Deploy to K8S
+      - IMAGE_NEW_TAG=IMAGE_TAG
+      - sed -i.bak 's#IMAGE_NEW_TAG#'"$IMAGE_NEW_TAG"'#' ./k8s/kustomization.yaml
       - kubectl apply -k ./k8s
       # - kustomize build ./k8s | kubectl apply -f -

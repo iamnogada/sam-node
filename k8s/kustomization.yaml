@@ -11,3 +11,6 @@ configMapGenerator:
   - name: application-env
     files:
       - env.json
+images:
+  - name: sample
+    newTag: IMAGE_NEW_TAG
