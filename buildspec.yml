@@ -29,6 +29,5 @@ phases:
       - echo $(pwd)
       - cat ~/.kube/config
       - ls -al /usr/local/bin/k*
-      - kubectl version
       - kubectl apply -f deployment.yaml -n dev
       # - kustomize build ./k8s | kubectl apply -f -
