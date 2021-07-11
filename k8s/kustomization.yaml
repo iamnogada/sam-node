@@ -6,6 +6,6 @@ resources:
   - service.yaml
 
 configMapGenerator:
-  - name: application-config
+  - name: application-env
     files:
-      - application.properties
+      - env.json

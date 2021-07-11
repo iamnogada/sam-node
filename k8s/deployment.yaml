@@ -21,3 +21,11 @@ spec:
           ports:
             - containerPort: 3000
               name: http
+          volumeMounts:
+            - name: application-env
+              mountPath: /sam-node/config/env.json
+              subPath: env.json
+      volumes:
+        - name: application-env
+          configMap:
+            name: application-env
