@@ -30,3 +30,8 @@ docker run -d \
   --name=sam-node \
   --link mariadb:mariadb \
   nogada/sam-node:latest
+
+
+
+aws eks pipeline buildspec 권한처리 
+https://twofootdog.tistory.com/73
