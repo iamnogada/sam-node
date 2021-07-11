@@ -6,14 +6,17 @@ data:
       - system:nodes
       rolearn: arn:aws:iam::428923833419:role/eksWorknodeRole
       username: system:node:{{EC2PrivateDNSName}}
-    - rolearn: arn:aws:iam::428923833419:role/service-role/btiwoomCodeDeployRole 
-      username: btiwoomCodeDeployRole 
-      groups: 
-        - system:masters
+    - groups:
+      - system:masters
+      rolearn: arn:aws:iam::428923833419:role/btiwoomCodeDeployRole
+      username: btiwoomCodeDeployRole
 kind: ConfigMap
 metadata:
-  creationTimestamp: "2021-07-03T05:17:24Z"
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"v1","data":{"mapRoles":"- groups:\n  - system:bootstrappers\n  - system:nodes\n  rolearn: arn:aws:iam::428923833419:role/eksWorknodeRole\n  username: system:node:{{EC2PrivateDNSName}}\n"},"kind":"ConfigMap","metadata":{"annotations":{},"creationTimestamp":"2021-07-03T05:17:24Z","name":"aws-auth","namespace":"kube-system","resourceVersion":"1013","uid":"c38aa2a3-2f28-4a81-8710-92a2658d32d1"}}
+  creationTimestamp: "2021-07-11T10:21:07Z"
   name: aws-auth
   namespace: kube-system
-  resourceVersion: "1013"
-  uid: c38aa2a3-2f28-4a81-8710-92a2658d32d1
+  resourceVersion: "2015777"
+  uid: e6d56d1a-1e25-499d-a00a-6faf3a6d331e
