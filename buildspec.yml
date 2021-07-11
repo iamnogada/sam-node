@@ -4,12 +4,10 @@ phases:
   pre_build:
     commands:
       - echo aws ecr login
-      # 428923833419
-      - echo $AWS_DEFAULT_REGION
-      - echo $CODEBUILD_RESOLVED_SOURCE_VERSION 비티움
-      # - $(aws ecr get-login --no-include-email --region $AWS_DEFAULT_REGION)
+      - git tag --list > tags.txt
+      - cat tags.txt
       - $(aws ecr get-login --no-include-email --region $AWS_DEFAULT_REGION)
-      # - $(aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com)
+      - export IMAGE_REPO_NAME=
   build:
     commands:
       - echo docekr build
