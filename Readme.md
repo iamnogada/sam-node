@@ -22,3 +22,11 @@ Next steps:
 4. Run prisma generate to install Prisma Client. You can then start querying your database.
 
 DATABASE_URL="mysql://root:passw@rd@127.0.0.1:3306/employees"
+
+
+docker run -d \
+  -p 4000:3000 \
+  -v $(pwd)/env.json:/sam-node/config/env.json \
+  --name=sam-node \
+  --link mariadb:mariadb \
+  nogada/sam-node:latest

@@ -6,7 +6,7 @@
   "configurations": [
     {
       "name": "run",
-      "program": "DEBUG=prisma:* ${workspaceFolder}/app/server.js",
+      "program": "DEBUG=prisma:* ${workspaceFolder}/src/server.js",
       "request": "launch",
       "skipFiles": ["<node_internals>/**"],
       "type": "pwa-node"

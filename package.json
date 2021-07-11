@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "NODE_PATH=./app  node app/server.js",
-    "dev": "NODE_PATH=./app nodemon app/server.js",
+    "start": "NODE_PATH=./src  node src/server.js",
+    "dev": "NODE_PATH=./src nodemon src/server.js",
     "db": "NODE_TLS_REJECT_UNAUTHORIZED=0 npx prisma generate"
   },
   "repository": {

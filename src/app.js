@@ -4,8 +4,8 @@ const express = require("express");
 const cookieParser = require("cookie-parser");
 
 // intialize environment values and insert into global in order accessing from every code
+// const config = require("../config/env.json");
 global.config = require("../config/env.json");
-
 // global middleware
 const errorHandler = require("middlewares/errorHandler");
 // import routers samples

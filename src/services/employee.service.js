@@ -2,9 +2,8 @@
 // service for employee entity in database
 
 const { PrismaClient } = require("@prisma/client");
-// From global variable config(global.config)
-const employeeDB = config.datasource.employeesDB;
 
+const employeeDB = config.datasource.employee;
 const prisma = new PrismaClient({
   datasources: employeeDB,
 });

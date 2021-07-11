@@ -1,0 +1,12 @@
+.vscode
+test
+
+.eslintrc.json
+.gitignore
+.git
+.prettierrc.json
+Readme.md
+Dockerfile
+node_modules
+npm-debug.log
+mariadb

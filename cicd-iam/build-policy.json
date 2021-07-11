@@ -1,0 +1,21 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "VisualEditor0",
+      "Effect": "Allow",
+      "Action": [
+        "codebuild:CreateReportGroup",
+        "codebuild:CreateReport",
+        "codebuild:UpdateReport",
+        "codebuild:BatchPutCodeCoverages",
+        "codecommit:GitPull",
+        "codebuild:BatchPutTestCases"
+      ],
+      "Resource": [
+        "arn:aws:codebuild:ap-northeast-2:428923833419:report-group/svc-framework-papi-sample-*",
+        "arn:aws:codecommit:ap-northeast-2:428923833419:svc-framework-papi-sample"
+      ]
+    }
+  ]
+}
