@@ -8,9 +8,10 @@ resources:
   - service.yaml
 
 configMapGenerator:
-  - name: application-env
-    files:
+  - files:
       - env.json
+    name: application-env
+
 images:
-  - name: sample
+  - name: 428923833419.dkr.ecr.ap-northeast-2.amazonaws.com/svc/framework/papi-sample
     newTag: IMAGE_NEW_TAG

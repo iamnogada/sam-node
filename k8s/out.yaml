@@ -1,0 +1,72 @@
+apiVersion: v1
+data:
+  env.json: |
+    {
+      "version": "v1.0",
+      "application": {
+        "port": 3000
+      },
+      "datasource": {
+        "employee": {
+          "employeeDB": {
+            "url": "mysql://root:passw@rd@mariadb:3306/employees"
+          }
+        },
+        "db": {
+          "employeeDB": {
+            "url": "mysql://root:passw@rd@127.0.0.1:3306/employees"
+          }
+        }
+      }
+    }
+kind: ConfigMap
+metadata:
+  name: application-env-hm7dfhcb22
+  namespace: dev
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: sample
+  namespace: dev
+spec:
+  ports:
+  - name: http
+    port: 3000
+    protocol: TCP
+    targetPort: http
+  selector:
+    app: sample
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: sample
+  name: sample
+  namespace: dev
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sample
+  template:
+    metadata:
+      labels:
+        app: sample
+    spec:
+      containers:
+      - image: 428923833419.dkr.ecr.ap-northeast-2.amazonaws.com/svc/framework/papi-sample
+        imagePullPolicy: Always
+        name: sample
+        ports:
+        - containerPort: 3000
+          name: http
+        volumeMounts:
+        - mountPath: /sam-node/config/env.json
+          name: application-env
+          subPath: env.json
+      volumes:
+      - configMap:
+          name: application-env-hm7dfhcb22
+        name: application-env
