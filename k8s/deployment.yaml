@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sample
+  labels:
+    app: sample
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sample
+  template:
+    metadata:
+      labels:
+        app: sample
+    spec:
+      containers:
+        - name: sample
+          image: 428923833419.dkr.ecr.ap-northeast-2.amazonaws.com/svc/framework/papi-sample
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 3000
+              name: http
