@@ -28,6 +28,7 @@ phases:
       - echo Deploy to K8S
       - echo $(pwd)
       - cat ~/.kube/config
+      - kubectl get pod -n dev
       - ls -al /usr/local/bin/k*
       - kubectl apply -f deployment.yaml -n dev
       # - kustomize build ./k8s | kubectl apply -f -
