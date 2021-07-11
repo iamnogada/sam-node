@@ -29,5 +29,5 @@ phases:
       - echo $(pwd)
       - ls -al
       - cat ./k8s/env.json
-      - $(kubectl apply -k ./k8s)
+      - kubectl apply -f ./k8s/deployment.yaml
       # - kustomize build ./k8s | kubectl apply -f -
