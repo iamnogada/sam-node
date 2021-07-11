@@ -1,8 +1,10 @@
 FROM node:16-alpine
 
+RUN mkdir /sam-node
+
 WORKDIR /sam-node
 
-COPY package*.json .
+COPY package*.json /sam-node
 
 ENV NODE_TLS_REJECT_UNAUTHORIZED=0
 ENV NODE_PATH=/sam-node/src
