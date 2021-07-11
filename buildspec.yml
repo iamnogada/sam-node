@@ -27,7 +27,7 @@ phases:
     commands:
       - echo Deploy to K8S
       - echo $(pwd)
-      - ls -al
+      - ls -al /usr/local/bin/k*
       - cat ./k8s/env.json
       - kubectl apply -f deployment.yaml -n dev
       # - kustomize build ./k8s | kubectl apply -f -
