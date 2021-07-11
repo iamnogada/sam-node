@@ -4,8 +4,8 @@ phases:
   pre_build:
     commands:
       - echo aws ecr login
-      - git tag --list > tags.txt
-      - cat tags.txt
+      # - git tag --list > tags.txt
+      # - cat tags.txt
       - $(aws ecr get-login --no-include-email --region $AWS_DEFAULT_REGION)
       - export IMAGE_REPO_NAME=
   build:
