@@ -5,12 +5,13 @@ phases:
     commands:
       - echo aws ecr login
       - echo $AWS_DEFAULT_REGION
-      - echo $CODEBUILD_RESOLVED_SOURCE_VERSION
+      - echo $CODEBUILD_RESOLVED_SOURCE_VERSION 비티움
       # - $(aws ecr get-login --no-include-email --region $AWS_DEFAULT_REGION)
       # - $(aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com)
   build:
     commands:
       - echo docekr build
+      - echo $IMAGE_REPO_NAME
       - docker build -t $IMAGE_REPO_NAME:latest .
       - docker tag $IMAGE_REPO_NAME:latest $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:latest
       - docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:latest
