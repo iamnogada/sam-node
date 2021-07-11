@@ -14,4 +14,4 @@ configMapGenerator:
 
 images:
   - name: 428923833419.dkr.ecr.ap-northeast-2.amazonaws.com/svc/framework/papi-sample
-    newTag: IMAGE_NEW_TAG
+    newTag: #IMAGE_NEW_TAG#
