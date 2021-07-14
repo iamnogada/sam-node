@@ -71,6 +71,14 @@ model titles {
   @@id([emp_no, title, from_date])
 }
 
+model sample {
+  id        Int      @id @default(autoincrement())
+  title     String   @employeeDB.VarChar(200)
+  body      String   @employeeDB.VarChar(3000)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
 enum employees_gender {
   M
   F

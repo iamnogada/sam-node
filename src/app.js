@@ -2,6 +2,7 @@
 const express = require("express");
 // const path = require('path');
 const cookieParser = require("cookie-parser");
+const morgan = require("morgan");
 
 // intialize environment values and insert into global in order accessing from every code
 // const config = require("../config/env.json");
@@ -12,6 +13,7 @@ const errorHandler = require("middlewares/errorHandler");
 const authRouter = require("routers/auth");
 const carRouter = require("routers/car");
 const employeeRouter = require("routers/employee");
+const sampleRouter = require("routers/sample");
 
 /* GUIDE: Import(Require) new router
  **  const [variableRouter] = require("[path]")
@@ -22,6 +24,8 @@ const app = express();
 
 const port = config.application.port || 3000;
 app.set("port", port);
+
+app.use(morgan("tiny"));
 
 /* <------ Start global middle ware block */
 //TODO: access and app log 처리 필요
@@ -39,6 +43,7 @@ app.use(cookieParser());
 app.use("/api/car", carRouter);
 app.use("/api/auth", authRouter);
 app.use("/api/employee", employeeRouter);
+app.use("/api/sample", sampleRouter);
 
 /* End ---------------------------------> */
 
