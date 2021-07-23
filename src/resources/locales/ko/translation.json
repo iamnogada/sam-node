@@ -1,0 +1,7 @@
+{
+  "title": "제목",
+  "body": "내용",
+  "validation": {
+    "required": "{{name}}은 필수 입력값 입니다. {{path}}"
+  }
+}

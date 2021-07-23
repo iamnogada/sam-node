@@ -4,6 +4,10 @@ const express = require("express");
 const cookieParser = require("cookie-parser");
 const morgan = require("morgan");
 
+const i18next = require("i18next");
+const i18nextMiddleware = require("i18next-http-middleware");
+const i18nextBackend = require("i18next-fs-backend");
+
 // intialize environment values and insert into global in order accessing from every code
 // const config = require("../config/env.json");
 global.config = require("../config/env.json");
@@ -37,6 +41,23 @@ app.use(cookieParser());
 
 /* End ---------------------------------> */
 
+// use i18n
+i18next
+  .use(i18nextBackend)
+  .use(i18nextMiddleware.LanguageDetector)
+  .init({
+    backend: {
+      loadPath: __dirname + "/resources/locales/{{lng}}/{{ns}}.json",
+      addPath: __dirname + "/resources/locales/{{lng}}/{{ns}}.missing.json",
+    },
+    fallbackLng: "en",
+    load: "languageOnly",
+    saveMissing: true,
+    detection: { lookupHeader: "accept-language", lookupQuerystring: "lng" },
+  });
+
+app.use(i18nextMiddleware.handle(i18next));
+
 // app.use(express.static(path.join(__dirname, 'public')));
 /* <------ Start assigning router */
 // GUIDE: add new router
@@ -44,6 +65,23 @@ app.use("/api/car", carRouter);
 app.use("/api/auth", authRouter);
 app.use("/api/employee", employeeRouter);
 app.use("/api/sample", sampleRouter);
+app.use(i18nextMiddleware.handle(i18next));
+// TODO. i18n 테스트용 api
+app.get("/i18n", (req, res) => {
+  res.send(
+    JSON.stringify(
+      {
+        "req.language": req.language,
+        "req.i18n.language": req.i18n.language,
+        "req.i18n.languages": req.i18n.languages,
+        "req.i18n.languages[0]": req.i18n.languages[0],
+        'req.t("home.title")': req.t("home.title"),
+      },
+      null,
+      2
+    )
+  );
+});
 
 /* End ---------------------------------> */
 
