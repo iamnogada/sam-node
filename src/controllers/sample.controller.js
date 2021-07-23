@@ -1,7 +1,10 @@
 const yup = require("yup");
 const sampleService = require("services/sample.service");
 
-// validation 스키마 정의
+/**
+ * validation 스키마 정의
+ *  - 스키마 작성 방법 : https://github.com/jquense/yup#usage
+ */
 const valiationSchema = (t) => ({
   createData: yup.object().shape({
     title: yup
@@ -36,7 +39,9 @@ exports.createData = async (req, res, next) => {
   try {
     const { title, body } = req.body;
 
-    // validate request body
+    /**
+     * 상단에 정의한 스키마의 맞는 validate 를 실행한다.
+     */
     await valiationSchema(req.t).createData.validate({ title, body });
 
     let result = await sampleService.createData(title, body);
